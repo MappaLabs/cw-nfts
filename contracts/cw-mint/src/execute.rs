@@ -37,8 +37,6 @@ where
         }
     
         let config = Config {
-            cw721_address: None,
-            cw20_address: msg.cw20_address,
             unit_price: msg.unit_price,
             max_tokens: msg.max_tokens,
             owner: info.sender,
@@ -141,12 +139,8 @@ where
         amount: Uint128,
     ) -> Result<Response<C>, ContractError>  {
         let mut config = CONFIG.load(deps.storage)?;
-        if config.cw20_address != info.sender {
+        if config.owner != info.sender {
             return Err(ContractError::UnauthorizedTokenContract {});
-        }
-    
-        if config.cw721_address == None {
-            return Err(ContractError::Uninitialized {});
         }
     
         if config.unused_token_id >= config.max_tokens {
@@ -165,7 +159,7 @@ where
         });
     
         let callback = CosmosMsg::Wasm(WasmMsg::Execute {
-            contract_addr: config.cw20_address.to_string(),
+            contract_addr: info.sender.to_string(),
             msg: to_binary(&mint_msg)?,
             funds: vec![],
         });

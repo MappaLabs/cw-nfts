@@ -19,13 +19,10 @@ const SYMBOL: &str = "MGK";
 fn setup_contract(deps: DepsMut<'_>) -> Cw721Contract<'static, Extension, Empty> {
     let contract = Cw721Contract::default();
     let msg = InstantiateMsg {
-        owner: Addr::unchecked(MINTER),
         max_tokens: 1,
         unit_price: Uint128::new(1),
         name: CONTRACT_NAME.to_string(),
         symbol: SYMBOL.to_string(),
-        token_code_id: 10u64,
-        cw20_address: Addr::unchecked(MOCK_CONTRACT_ADDR),
         token_uri: String::from("https://ipfs.io/ipfs/Q"),
         extension: None,
     };
@@ -41,13 +38,10 @@ fn proper_instantiation() {
     let contract = Cw721Contract::<Extension, Empty>::default();
 
     let msg = InstantiateMsg {
-        owner: Addr::unchecked(MINTER),
         max_tokens: 1,
         unit_price: Uint128::new(1),
         name: CONTRACT_NAME.to_string(),
         symbol: SYMBOL.to_string(),
-        token_code_id: 10u64,
-        cw20_address: Addr::unchecked(MOCK_CONTRACT_ADDR),
         token_uri: String::from("https://ipfs.io/ipfs/Q"),
         extension: None,
     };

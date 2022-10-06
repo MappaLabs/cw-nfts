@@ -5,13 +5,10 @@ use cw721::Expiration;
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
-    pub owner: Addr,
     pub max_tokens: u32,
     pub unit_price: Uint128,
     pub name: String,
     pub symbol: String,
-    pub token_code_id: u64,
-    pub cw20_address: Addr,
     pub token_uri: String,
     pub extension: Extension,
 }
@@ -173,8 +170,6 @@ pub enum QueryMsg {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
     pub owner: Addr,
-    pub cw20_address: Addr,
-    pub cw721_address: Option<Addr>,
     pub max_tokens: u32,
     pub unit_price: Uint128,
     pub name: String,

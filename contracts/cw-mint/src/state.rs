@@ -96,8 +96,6 @@ where
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct Config {
     pub owner: Addr,
-    pub cw20_address: Addr,
-    pub cw721_address: Option<Addr>,
     pub max_tokens: u32,
     pub unit_price: Uint128,
     pub name: String,

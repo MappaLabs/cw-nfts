@@ -291,8 +291,6 @@ fn query_config(deps: Deps) -> StdResult<ConfigResponse> {
     let config = CONFIG.load(deps.storage)?;
     Ok(ConfigResponse {
         owner: config.owner,
-        cw20_address: config.cw20_address,
-        cw721_address: config.cw721_address,
         max_tokens: config.max_tokens,
         unit_price: config.unit_price,
         name: config.name,
